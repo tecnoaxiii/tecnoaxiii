@@ -1,465 +1,366 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0d14">
-  <meta name="description" content="TecnoAxiii: servicios informáticos, reparaciones, programación, montaje de equipos y proyectos tecnológicos.">
-  <title>TecnoAxiii | Servicios tecnológicos</title>
-  <style>
-    :root {
-      --bg: #0b0d14; --panel: #121622; --panel2: #191f2e;
-      --text: #f5f6fb; --muted: #a9afc1; --line: rgba(255,255,255,.10);
-      --purple: #a78bfa; --blue: #67d5ff; --green: #8be0b0;
-      --radius: 20px; --max: 1120px;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0; background: radial-gradient(ellipse at 85% 0%, rgba(104,79,190,.16), transparent 34%), var(--bg);
-      color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    button { font: inherit; }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin: auto; }
-    .topbar {
-      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
-      background: rgba(11,13,20,.82); border-bottom: 1px solid var(--line);
-    }
-    .nav { min-height: 76px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .brand { display:flex; align-items:center; gap:11px; font-weight:850; letter-spacing:-.7px; font-size:1.25rem; }
-    .brand-mark {
-      display:grid; place-items:center; width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, var(--purple), #5f8cff); color:#0b0d14; font-weight:950;
-      box-shadow: 0 8px 28px rgba(141,112,255,.25);
-    }
-    .brand span:last-child { color: var(--purple); }
-    .navlinks { display:flex; align-items:center; gap:24px; color:var(--muted); font-size:.92rem; }
-    .navlinks a:hover { color:var(--text); }
-    .menu-wrap { position:relative; }
-    .menu-button {
-      color:var(--text); background:var(--panel2); border:1px solid var(--line);
-      border-radius:12px; padding:10px 14px; cursor:pointer; display:flex; align-items:center; gap:9px;
-    }
-    .menu-button:hover { border-color:rgba(167,139,250,.6); }
-    .dropdown {
-      display:none; position:absolute; right:0; top:calc(100% + 12px); width:290px; padding:9px;
-      background:#171c29; border:1px solid var(--line); border-radius:16px;
-      box-shadow:0 22px 65px rgba(0,0,0,.45);
-    }
-    .dropdown.open { display:block; animation: pop .16s ease-out; }
-    .dropdown button {
-      display:block; width:100%; text-align:left; color:var(--muted); background:transparent; border:0;
-      border-radius:10px; padding:10px 12px; cursor:pointer;
-    }
-    .dropdown button:hover { background:rgba(167,139,250,.12); color:white; }
-    @keyframes pop { from {opacity:0; transform:translateY(-5px)} to {opacity:1; transform:translateY(0)} }
-    .hero { padding:82px 0 54px; }
-    .hero-grid { display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:46px; }
-    .eyebrow {
-      display:inline-flex; align-items:center; gap:8px; color:#c9bbff; font-size:.78rem;
-      font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
-      border:1px solid rgba(167,139,250,.28); background:rgba(167,139,250,.08);
-      border-radius:999px; padding:7px 12px;
-    }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 12px var(--green); }
-    h1 { font-size:clamp(2.7rem, 6vw, 5.2rem); line-height:1.02; letter-spacing:-3px; margin:22px 0 18px; }
-    .gradient { background:linear-gradient(100deg,#c6b5ff 10%,#7adfff 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .lead { color:var(--muted); font-size:1.12rem; max-width:610px; margin:0 0 28px; }
-    .actions { display:flex; flex-wrap:wrap; gap:12px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:13px; padding:13px 18px; font-weight:800; border:1px solid transparent; cursor:pointer; transition:.2s; }
-    .btn-primary { color:#0c0e15; background:linear-gradient(110deg,#b7a0ff,#79dfff); box-shadow:0 10px 30px rgba(137,121,255,.2); }
-    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 35px rgba(137,121,255,.3); }
-    .btn-secondary { color:var(--text); border-color:var(--line); background:rgba(255,255,255,.035); }
-    .btn-secondary:hover { border-color:rgba(167,139,250,.6); }
-    .hero-art {
-      min-height:350px; border-radius:28px; border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(145deg,rgba(167,139,250,.18),rgba(103,213,255,.06) 52%,rgba(255,255,255,.025));
-      display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
-    }
-    .hero-art:before,.hero-art:after { content:""; position:absolute; border:1px solid rgba(193,177,255,.18); border-radius:50%; width:290px;height:290px; }
-    .hero-art:after { width:390px;height:390px; }
-    .tech-graphic { position:relative; z-index:1; width:78%; max-width:370px; }
-    .screen {
-      border:1px solid rgba(255,255,255,.24); background:linear-gradient(145deg,#22283a,#111521);
-      border-radius:18px; padding:17px; box-shadow:0 25px 65px rgba(0,0,0,.4); transform:rotate(-4deg);
-    }
-    .screen-top { display:flex; gap:6px; margin-bottom:17px; }
-    .screen-top i { width:7px;height:7px;border-radius:50%;background:#8e83c5; }
-    .code-lines { display:grid; gap:9px; }
-    .code-lines span { height:8px; border-radius:9px; background:linear-gradient(90deg,rgba(167,139,250,.9),rgba(103,213,255,.3)); }
-    .code-lines span:nth-child(2) { width:72%; margin-left:15px; }
-    .code-lines span:nth-child(3) { width:86%; }
-    .code-lines span:nth-child(4) { width:56%; margin-left:15px; }
-    .chip { position:absolute; z-index:2; background:#171d2b; border:1px solid var(--line); border-radius:13px; padding:10px 13px; color:#dfe4f3; font-size:.82rem; box-shadow:0 12px 30px rgba(0,0,0,.3); }
-    .chip.one { top:17%; left:5%; } .chip.two { right:5%; bottom:19%; }
-    .section { padding:48px 0; }
-    .section-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:23px; }
-    .kicker { color:var(--purple); font-size:.76rem; letter-spacing:1.6px; text-transform:uppercase; font-weight:850; }
-    h2 { margin:5px 0 0; font-size:clamp(1.8rem,3vw,2.5rem); letter-spacing:-1.2px; line-height:1.15; }
-    .section-intro { color:var(--muted); max-width:480px; margin:0; font-size:.95rem; }
-    .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-    .card { background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); border:1px solid var(--line); border-radius:17px; padding:19px; min-height:165px; transition:.2s; }
-    .card:hover { transform:translateY(-4px); border-color:rgba(167,139,250,.42); }
-    .icon { width:42px;height:42px; display:grid;place-items:center;border-radius:13px;background:rgba(167,139,250,.12);color:#c4b2ff;font-size:1.25rem;margin-bottom:13px; }
-    .card h3 { margin:0 0 5px; font-size:1rem; }
-    .card p { margin:0; color:var(--muted); font-size:.86rem; }
-    .strip { margin:34px 0 65px; padding:27px; border:1px solid rgba(167,139,250,.2); border-radius:20px; background:linear-gradient(110deg,rgba(167,139,250,.12),rgba(103,213,255,.06)); display:flex;align-items:center;justify-content:space-between;gap:22px; }
-    .strip h2 { font-size:1.45rem; margin:0 0 5px; }
-    .strip p { margin:0;color:var(--muted); }
-    footer { border-top:1px solid var(--line); padding:25px 0 35px; color:var(--muted); font-size:.85rem; }
-    .footer-row { display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap; }
-    .smallprint { font-size:.76rem; color:#858c9e; max-width:780px; margin-top:13px; }
-    /* Full details view */
-    #detailsView { display:none; padding:46px 0 70px; }
-    #detailsView.active { display:block; animation: fade .25s ease; }
-    #homeView.hidden { display:none; }
-    @keyframes fade { from {opacity:0;transform:translateY(7px)} to {opacity:1;transform:translateY(0)} }
-    .detail-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:28px; }
-    .back { background:transparent;color:var(--muted);border:1px solid var(--line);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:750; }
-    .back:hover { color:white;border-color:var(--purple); }
-    .detail-hero { padding:34px; border:1px solid var(--line); border-radius:23px; background:linear-gradient(130deg,rgba(167,139,250,.13),rgba(103,213,255,.05)); margin-bottom:22px; }
-    .detail-hero h1 { font-size:clamp(2.1rem,4vw,3.5rem); margin:10px 0; }
-    .detail-hero p { color:var(--muted);max-width:760px;margin:0; }
-    .detail-layout { display:grid; grid-template-columns:245px 1fr; gap:22px; align-items:start; }
-    .side-menu { position:sticky;top:96px;padding:12px;border:1px solid var(--line);border-radius:17px;background:var(--panel); }
-    .side-menu strong { display:block;padding:8px 10px 12px;font-size:.83rem;color:#d7ccff; }
-    .side-menu a { display:block;padding:9px 10px;border-radius:9px;color:var(--muted);font-size:.86rem; }
-    .side-menu a:hover { background:rgba(167,139,250,.1);color:white; }
-    .detail-content { display:grid;gap:15px; }
-    .detail-card { scroll-margin-top:100px; background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:23px; }
-    .detail-title { display:flex;align-items:center;gap:12px;margin-bottom:12px; }
-    .detail-title .icon { margin:0;flex:none; }
-    .detail-title h2 { font-size:1.25rem;letter-spacing:-.4px; }
-    .detail-card p { color:var(--muted);margin:0 0 13px;font-size:.93rem; }
-    .detail-card ul { margin:0;padding-left:20px;display:grid;gap:7px;color:#d8dbea;font-size:.91rem; }
-    .contact-box { padding:25px;border:1px solid rgba(103,213,255,.2);border-radius:18px;background:linear-gradient(120deg,rgba(103,213,255,.08),rgba(167,139,250,.09)); }
-    .contact-box h2 { font-size:1.5rem;margin-bottom:8px; }
-    .contact-box p { color:var(--muted);margin:0 0 15px; }
-    @media (max-width:850px) {
-      .hero-grid { grid-template-columns:1fr; gap:30px; }
-      .hero-art { min-height:290px; }
-      .cards { grid-template-columns:repeat(2,1fr); }
-      .detail-layout { grid-template-columns:1fr; }
-      .side-menu { position:static;display:grid;grid-template-columns:repeat(2,1fr); }
-      .side-menu strong { grid-column:1/-1; }
-    }
-    @media (max-width:560px) {
-      .wrap { width:min(100% - 28px,var(--max)); }
-      .nav { min-height:66px; }
-      .navlinks { display:none; }
-      .hero { padding:55px 0 35px; }
-      h1 { letter-spacing:-2px; }
-      .hero-art { min-height:245px; }
-      .cards { grid-template-columns:1fr 1fr; gap:9px; }
-      .card { padding:14px;min-height:155px; }
-      .section-head { display:block; }
-      .section-intro { margin-top:10px; }
-      .strip { display:block;padding:22px;margin-bottom:45px; }
-      .strip .btn { margin-top:17px;width:100%; }
-      .detail-hero { padding:23px; }
-      .detail-card { padding:18px; }
-      .side-menu { grid-template-columns:1fr 1fr; }
-      .detail-top { align-items:flex-start; }
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoAxiii | Servicios informáticos y tecnológicos en Carmona</title>
+    <meta name="description" content="Servicios tecnológicos e informáticos independientes en Carmona (Sevilla) y alrededores. Reparación de ordenadores, montaje, consolas, optimización de software y proyectos web sin intermediarios.">
+    <meta name="keywords" content="informatica carmona, reparar ordenador carmona, servicio tecnico carmona, reparar portatil sevilla, montaje pc carmona, tecnoaxiii">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-beige: #f7f5f0;
+            --surface-white: #ffffff;
+            --text-dark: #1e2022;
+            --text-muted: #5a5e63;
+            --accent-orange: #d96b43;
+            --accent-orange-hover: #c25934;
+            --border-gray: #e4e2dd;
+            --radius: 12px;
+            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    /* Mobile-first refinements */
-    @media (max-width: 560px) {
-      body { font-size: 15px; }
-      .wrap { width: min(100% - 30px, var(--max)); }
-      .topbar { position: sticky; }
-      .nav { min-height: 62px; gap: 10px; }
-      .brand { font-size: 1.08rem; gap: 8px; }
-      .brand-mark { width: 34px; height: 34px; border-radius: 10px; }
-      .menu-button { padding: 10px 12px; min-height: 42px; font-size: .82rem; }
-      .dropdown {
-        position: fixed; top: 70px; right: 15px; left: 15px; width: auto;
-        max-height: min(70vh, 520px); overflow-y: auto; z-index: 40;
-        box-shadow: 0 18px 55px rgba(0,0,0,.65);
-      }
-      .dropdown button { min-height: 44px; font-size: .9rem; }
-      .hero { padding: 42px 0 28px; }
-      .hero-grid { gap: 24px; }
-      .eyebrow { font-size: .68rem; letter-spacing: 1px; padding: 6px 10px; }
-      h1 { font-size: clamp(2.35rem, 11vw, 3.45rem); line-height: 1.02; letter-spacing: -1.8px; margin: 17px 0 14px; }
-      .lead { font-size: 1rem; line-height: 1.65; margin-bottom: 21px; }
-      .actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
-      .actions .btn { width: 100%; min-height: 49px; }
-      .hero-art { min-height: 205px; border-radius: 22px; }
-      .hero-art:before { width: 210px; height: 210px; }
-      .hero-art:after { width: 280px; height: 280px; }
-      .tech-graphic { width: 70%; max-width: 260px; }
-      .screen { padding: 13px; border-radius: 14px; }
-      .chip { font-size: .7rem; padding: 8px 10px; }
-      .chip.one { top: 12%; left: 3%; }
-      .chip.two { right: 3%; bottom: 12%; }
-      .section { padding: 32px 0; }
-      .section-head { margin-bottom: 17px; }
-      h2 { font-size: clamp(1.55rem, 7vw, 2rem); }
-      .section-intro { font-size: .9rem; }
-      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-      .card { min-height: 0; padding: 15px 13px; border-radius: 15px; }
-      .icon { width: 38px; height: 38px; font-size: 1.12rem; margin-bottom: 10px; }
-      .card h3 { font-size: .92rem; line-height: 1.25; }
-      .card p { font-size: .8rem; line-height: 1.45; }
-      .strip { margin: 24px 0 40px; padding: 20px; border-radius: 17px; }
-      .strip h2 { font-size: 1.3rem; }
-      .strip p { font-size: .9rem; }
-      .strip .btn { width: 100%; min-height: 48px; }
-      footer { padding: 22px 0 30px; }
-      .footer-row { gap: 12px; }
-      .smallprint { font-size: .72rem; line-height: 1.55; }
-      #detailsView { padding: 26px 0 45px; }
-      .detail-top { align-items: center; margin-bottom: 18px; }
-      .detail-top strong { font-size: .95rem; }
-      .back { min-height: 42px; padding: 9px 11px; font-size: .82rem; }
-      .detail-hero { padding: 21px 18px; border-radius: 18px; margin-bottom: 16px; }
-      .detail-hero h1 { font-size: clamp(2rem, 9vw, 2.8rem); letter-spacing: -1.5px; }
-      .detail-hero p { font-size: .9rem; line-height: 1.55; }
-      .detail-layout { gap: 15px; }
-      .side-menu {
-        display: flex; gap: 7px; overflow-x: auto; padding: 10px;
-        white-space: nowrap; border-radius: 14px; scrollbar-width: thin;
-      }
-      .side-menu strong { flex: 0 0 auto; padding: 8px 9px; }
-      .side-menu a { flex: 0 0 auto; padding: 9px 11px; background: rgba(255,255,255,.035); border: 1px solid var(--line); }
-      .detail-content { gap: 12px; }
-      .detail-card { padding: 17px 15px; border-radius: 15px; scroll-margin-top: 78px; }
-      .detail-title { align-items: flex-start; gap: 10px; }
-      .detail-title .icon { width: 36px; height: 36px; }
-      .detail-title h2 { font-size: 1.08rem; line-height: 1.3; margin-top: 4px; }
-      .detail-card p { font-size: .88rem; line-height: 1.55; }
-      .detail-card ul { padding-left: 19px; gap: 8px; font-size: .86rem; line-height: 1.5; }
-      .contact-box { padding: 19px 16px; border-radius: 16px; }
-      .contact-box h2 { font-size: 1.3rem; }
-      .contact-box p { font-size: .9rem; line-height: 1.55; }
-      .contact-box .btn { width: 100%; min-height: 49px; }
-    }
-    @media (max-width: 380px) {
-      .wrap { width: min(100% - 24px, var(--max)); }
-      .cards { grid-template-columns: 1fr; }
-      .card { display: grid; grid-template-columns: 40px 1fr; column-gap: 11px; align-items: center; }
-      .card .icon { grid-row: span 2; margin: 0; }
-      .card h3 { align-self: end; }
-      .card p { align-self: start; }
-      .brand { font-size: 1rem; }
-      .menu-button { font-size: .76rem; padding: 9px 10px; }
-      .detail-top { gap: 8px; }
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    @media (prefers-reduced-motion:reduce) { *,*::before,*::after {scroll-behavior:auto!important;animation:none!important;transition:none!important;} }
-  </style>
-</head>
-<body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a class="brand" href="#" aria-label="TecnoAxiii, inicio" onclick="showHome();return false;">
-        <span class="brand-mark">TA</span><span>Tecno<span>Axiii</span></span>
-      </a>
-      <nav class="navlinks" aria-label="Navegación principal">
-        <a href="#servicios" onclick="showHome()">Servicios</a>
-        <a href="#sobre-mi" onclick="showHome()">Sobre TecnoAxiii</a>
-      </nav>
-      <div class="menu-wrap">
-        <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="servicesDropdown">
-          Servicios TecnoAxiii <span aria-hidden="true">⌄</span>
-        </button>
-        <div class="dropdown" id="servicesDropdown">
-          <button onclick="openDetails('reparacion')">01 · Reparación y mantenimiento</button>
-          <button onclick="openDetails('montaje')">02 · Montaje de equipos</button>
-          <button onclick="openDetails('consolas')">03 · Consolas y software</button>
-          <button onclick="openDetails('programacion')">04 · Programación y desarrollo</button>
-          <button onclick="openDetails('sistemas')">05 · Sistemas operativos</button>
-          <button onclick="openDetails('servidores')">06 · NAS, servidores y electrónica</button>
-          <button onclick="openDetails('venta')">07 · Venta de material</button>
-          <button onclick="openDetails('asesoramiento')">08 · Asesoramiento tecnológico</button>
-          <button onclick="openDetails('proyectos')">09 · Organización de proyectos</button>
-        </div>
-      </div>
-    </div>
-  </header>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <main>
-    <div id="homeView">
-      <section class="hero">
-        <div class="wrap hero-grid">
-          <div>
-            <div class="eyebrow"><span class="dot"></span> Servicios informáticos y tecnológicos</div>
-            <h1>La tecnología tiene solución.<br><span class="gradient">Vamos a encontrarla.</span></h1>
-            <p class="lead">En TecnoAxiii encontrarás ayuda con reparaciones, ordenadores, programación, consolas y proyectos tecnológicos. Desde resolver un problema hasta convertir una idea en algo real.</p>
-            <div class="actions">
-              <button class="btn btn-primary" onclick="openDetails()">Leer más <span aria-hidden="true">→</span></button>
-              <a class="btn btn-secondary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20-%20TecnoAxiii" target="_blank" rel="noopener noreferrer">Enviar un correo <span aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <div class="hero-art" aria-label="Ilustración tecnológica">
-            <span class="chip one">⚙ Reparación</span>
-            <div class="tech-graphic">
-              <div class="screen">
-                <div class="screen-top"><i></i><i></i><i></i></div>
-                <div class="code-lines"><span style="width:88%"></span><span></span><span></span><span></span><span style="width:68%"></span></div>
-              </div>
-            </div>
-            <span class="chip two">⌘ Desarrollo · Hardware</span>
-          </div>
-        </div>
-      </section>
+        body {
+            background-color: var(--bg-beige);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-      <section class="section" id="servicios">
-        <div class="wrap">
-          <div class="section-head">
-            <div><div class="kicker">Qué puedo hacer</div><h2>Soluciones para tu tecnología</h2></div>
-            <p class="section-intro">Una visión rápida de los principales servicios. En «Leer más» encontrarás el catálogo completo y los detalles de cada área.</p>
-          </div>
-          <div class="cards">
-            <article class="card"><div class="icon">🔧</div><h3>Reparación</h3><p>Limpieza, mantenimiento, diagnóstico y sustitución de piezas.</p></article>
-            <article class="card"><div class="icon">🖥️</div><h3>Ordenadores</h3><p>Montaje desde cero, mejoras, componentes y configuración.</p></article>
-            <article class="card"><div class="icon">⌨️</div><h3>Programación</h3><p>Páginas web, aplicaciones, bots y servicios online.</p></article>
-            <article class="card"><div class="icon">🎮</div><h3>Consolas</h3><p>Mantenimiento, personalización y modificación de software.</p></article>
-            <article class="card"><div class="icon">🗄️</div><h3>NAS y servidores</h3><p>Almacenamiento, pequeños servidores y redes locales.</p></article>
-            <article class="card"><div class="icon">🔌</div><h3>Electrónica</h3><p>Proyectos con Raspberry Pi, Orange Pi, Arduino y micro:bit.</p></article>
-            <article class="card"><div class="icon">⚡</div><h3>Software</h3><p>Windows, Linux, drivers, programas y optimización.</p></article>
-            <article class="card"><div class="icon">🛒</div><h3>Asesoramiento</h3><p>Ayuda para elegir tecnología, piezas y accesorios.</p></article>
-          </div>
-          <div class="strip" id="sobre-mi">
-            <div><h2>¿Tienes una idea, un problema o un proyecto?</h2><p>Cuéntame qué necesitas y vemos qué solución se puede plantear.</p></div>
-            <button class="btn btn-primary" onclick="openDetails()">Leer más sobre mis servicios →</button>
-          </div>
-        </div>
-      </section>
-      <footer><div class="wrap">
-        <div class="footer-row"><strong style="color:#c5b4ff">TecnoAxiii</strong><span>Tu tecnología, a otro nivel.</span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20-%20TecnoAxiii" target="_blank" rel="noopener noreferrer">Enviar un correo ↗</a></div>
-        <p class="smallprint">Proyecto independiente basado en aprendizaje autodidacta y experiencia práctica. No cuento con titulaciones oficiales ni certificaciones profesionales. Cada trabajo se valora individualmente y se realiza según los conocimientos, medios y posibilidades disponibles.</p>
-      </div></footer>
-    </div>
+        header {
+            background-color: var(--surface-white);
+            border-bottom: 1px solid var(--border-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    <section id="detailsView">
-      <div class="wrap">
-        <div class="detail-top">
-          <div><div class="kicker">Catálogo completo</div><strong>Servicios TecnoAxiii</strong></div>
-          <button class="back" onclick="showHome()">← Volver atrás</button>
-        </div>
-        <div class="detail-hero">
-          <div class="eyebrow">Todo lo que puedo ofrecer</div>
-          <h1>¿En qué puedo <span class="gradient">ayudarte?</span></h1>
-          <p>Explora las diferentes áreas de trabajo de TecnoAxiii. Puedes utilizar el menú lateral o el menú «Servicios TecnoAxiii» de la parte superior para ir directamente a cada categoría.</p>
-        </div>
-        <div class="detail-layout">
-          <aside class="side-menu">
-            <strong>Servicios TecnoAxiii</strong>
-            <a href="#reparacion">01 · Reparación</a>
-            <a href="#montaje">02 · Montaje de equipos</a>
-            <a href="#consolas">03 · Consolas</a>
-            <a href="#programacion">04 · Programación</a>
-            <a href="#sistemas">05 · Sistemas y software</a>
-            <a href="#servidores">06 · NAS y electrónica</a>
-            <a href="#venta">07 · Venta de material</a>
-            <a href="#asesoramiento">08 · Asesoramiento</a>
-            <a href="#proyectos">09 · Proyectos</a>
-          </aside>
-          <div class="detail-content">
-            <article class="detail-card" id="reparacion">
-              <div class="detail-title"><div class="icon">🔧</div><h2>01. Reparación y mantenimiento</h2></div>
-              <p>Mantenimiento físico y cuidado de dispositivos para mejorar su funcionamiento, prevenir problemas y detectar posibles averías.</p>
-              <ul><li>Limpieza interna y externa de móviles, tablets, ordenadores, portátiles y consolas.</li><li>Mantenimiento preventivo y limpieza de componentes.</li><li>Diagnóstico de fallos y problemas de hardware.</li><li>Reparación y sustitución de piezas cuando sea viable.</li><li>Limpieza y organización de memorias y almacenamiento.</li></ul>
-            </article>
-            <article class="detail-card" id="montaje">
-              <div class="detail-title"><div class="icon">🖥️</div><h2>02. Montaje de ordenadores y equipos</h2></div>
-              <p>Montaje, actualización y configuración de equipos según el uso que se les vaya a dar y el presupuesto disponible.</p>
-              <ul><li>Montaje de ordenadores de sobremesa desde cero.</li><li>Selección y compatibilidad de componentes.</li><li>Instalación o sustitución de RAM, SSD, discos y otros componentes.</li><li>Mejoras de rendimiento y ampliaciones.</li><li>Configuración inicial y comprobación del equipo.</li><li>Intervenciones en portátiles según su diseño y posibilidades de reparación.</li></ul>
-            </article>
-            <article class="detail-card" id="consolas">
-              <div class="detail-title"><div class="icon">🎮</div><h2>03. Consolas y modificación de software</h2></div>
-              <p>Mantenimiento, configuración y personalización de consolas y dispositivos compatibles.</p>
-              <ul><li>Nintendo DS y DSi.</li><li>Nintendo 2DS y 3DS.</li><li>Nintendo Switch.</li><li>Game Boy.</li><li>PlayStation 2, PlayStation 3 y PlayStation 4.</li><li>Xbox One.</li><li>Instalación y configuración de homebrew, personalización y herramientas compatibles.</li></ul>
-            </article>
-            <article class="detail-card" id="programacion">
-              <div class="detail-title"><div class="icon">⌨️</div><h2>04. Programación y desarrollo</h2></div>
-              <p>Desarrollo de soluciones digitales, desde pequeñas herramientas hasta proyectos web y aplicaciones personalizadas.</p>
-              <ul><li>Diseño y desarrollo de páginas web.</li><li>Programación de aplicaciones y herramientas.</li><li>Creación de bots y automatizaciones.</li><li>Desarrollo de servicios online.</li><li>Integración de inteligencia artificial en proyectos.</li><li>Creación y mejora de soluciones digitales a medida.</li></ul>
-            </article>
-            <article class="detail-card" id="sistemas">
-              <div class="detail-title"><div class="icon">⚙️</div><h2>05. Sistemas operativos y software</h2></div>
-              <p>Instalación y puesta a punto de sistemas operativos, programas y controladores para dejar los dispositivos preparados para su uso.</p>
-              <ul><li>Instalación desde cero de Windows y distribuciones Linux.</li><li>Instalación de macOS en dispositivos Apple compatibles y recuperación o reinstalación cuando proceda.</li><li>Configuración inicial del sistema operativo.</li><li>Instalación, actualización y sincronización de drivers.</li><li>Instalación y configuración de programas.</li><li>Optimización del inicio, almacenamiento y ajustes del sistema.</li><li>Limpieza de archivos innecesarios y organización del dispositivo.</li></ul>
-            </article>
-            <article class="detail-card" id="servidores">
-              <div class="detail-title"><div class="icon">🗄️</div><h2>06. NAS, servidores y proyectos electrónicos</h2></div>
-              <p>Montaje de pequeños sistemas tecnológicos para almacenamiento, experimentación, automatización y uso doméstico.</p>
-              <ul><li>Montaje y configuración de NAS.</li><li>Configuración de pequeños servidores y servicios locales.</li><li>Sistemas de almacenamiento y copias de seguridad.</li><li>Proyectos con Raspberry Pi y Orange Pi.</li><li>Proyectos con Arduino y micro:bit.</li><li>Montaje de sistemas y prototipos tecnológicos.</li></ul>
-            </article>
-            <article class="detail-card" id="venta">
-              <div class="detail-title"><div class="icon">🛒</div><h2>07. Venta y búsqueda de material tecnológico</h2></div>
-              <p>Posibilidad de conseguir o asesorar sobre material y accesorios informáticos, según disponibilidad.</p>
-              <ul><li>Piezas y componentes para ordenadores, portátiles y consolas.</li><li>Cables, adaptadores y accesorios.</li><li>Pendrives y memorias USB.</li><li>SSD, HDD y almacenamiento externo.</li><li>Tarjetas SD y microSD.</li><li>Periféricos y material tecnológico.</li></ul>
-            </article>
-            <article class="detail-card" id="asesoramiento">
-              <div class="detail-title"><div class="icon">💡</div><h2>08. Asesoramiento y configuración tecnológica</h2></div>
-              <p>Ayuda para elegir tecnología adecuada, comparar opciones y configurar dispositivos según las necesidades de cada persona.</p>
-              <ul><li>Asesoramiento en ordenadores, portátiles, móviles y tablets.</li><li>Comparación de cámaras, micrófonos y periféricos.</li><li>Elección de componentes, piezas y accesorios.</li><li>Recomendaciones de NAS, discos, pendrives y tarjetas de memoria.</li><li>Configuración de teclados, ratones y otros periféricos.</li><li>Configuración de dispositivos, aplicaciones y sistemas.</li></ul>
-            </article>
-            <article class="detail-card" id="proyectos">
-              <div class="detail-title"><div class="icon">🧩</div><h2>09. Organización y optimización de proyectos</h2></div>
-              <p>Ayuda para estructurar ideas y proyectos, dividirlos en partes manejables y organizar mejor su desarrollo, incluyendo el uso de inteligencia artificial.</p>
-              <ul><li>Organización, planificación y optimización de proyectos.</li><li>División de proyectos complejos en módulos y tareas (atomización).</li><li>Planificación de fases, objetivos y prioridades.</li><li>Uso de inteligencia artificial para apoyar la organización y el desarrollo.</li><li>Diseño de flujos de trabajo y automatizaciones.</li></ul>
-            </article>
-            <div class="contact-box">
-              <h2>¿No encuentras lo que necesitas?</h2>
-              <p>Si tienes una idea, una consulta o un dispositivo que necesita atención, puedes contactar conmigo y explicar qué necesitas. Valoraremos si puedo ayudarte y qué solución es viable.</p>
-              <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20-%20TecnoAxiii" target="_blank" rel="noopener noreferrer">Enviar un correo a TecnoAxiii ↗</a>
-            </div>
-          </div>
-        </div>
-        <footer><div class="footer-row"><strong style="color:#c5b4ff">TecnoAxiii</strong><button class="back" onclick="showHome()">↑ Volver al inicio</button></div><p class="smallprint">Proyecto independiente basado en aprendizaje autodidacta y experiencia práctica. Sin titulaciones oficiales ni certificaciones profesionales. Los trabajos se valoran individualmente y se realizan únicamente cuando se dispone de los conocimientos, medios y condiciones necesarios. Las modificaciones de software se realizan respetando la legislación y los derechos de cada usuario.</p></footer>
-      </div>
-    </section>
-  </main>
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+        }
 
-  <script>
-    const menuButton = document.getElementById('menuButton');
-    const dropdown = document.getElementById('servicesDropdown');
-    const homeView = document.getElementById('homeView');
-    const detailsView = document.getElementById('detailsView');
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    menuButton.addEventListener('click', () => {
-      const isOpen = dropdown.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-    });
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.menu-wrap')) {
-        dropdown.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-      }
-    });
-    function closeMenu() {
-      dropdown.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-    }
-    function openDetails(sectionId) {
-      closeMenu();
-      homeView.classList.add('hidden');
-      detailsView.classList.add('active');
-      window.scrollTo({top:0,behavior:'smooth'});
-      if (sectionId) {
-        setTimeout(() => {
-          const section = document.getElementById(sectionId);
-          if (section) section.scrollIntoView({behavior:'smooth',block:'start'});
-        }, 80);
-      }
-      history.replaceState(null, '', '#servicios-completos');
-    }
-    function showHome() {
-      detailsView.classList.remove('active');
-      homeView.classList.remove('hidden');
-      closeMenu();
-      window.scrollTo({top:0,behavior:'smooth'});
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeMenu();
-    });
-  </script>
-</body>
-</html>
+        .logo span {
+            color: var(--accent-orange);
+        }
+
+        .tag-location {
+            font-size: 0.85rem;
+            background-color: var(--bg-beige);
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid var(--border-gray);
+            color: var(--text-muted);
+        }
+
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        @media (min-width: 576px) {
+            .btn { width: auto; }
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--surface-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-orange-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-gray);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-beige);
+        }
+
+        .main-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--text-dark);
+            padding-bottom: 0.5rem;
+        }
+
+        .grid-services {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .grid-services {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card-service {
+            background-color: var(--surface-white);
+            border: 1px solid var(--border-gray);
+            border-radius: var(--radius);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .card-service:hover {
+            border-color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: var(--accent-orange);
+            background-color: var(--bg-beige);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .card-service h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-service ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-service ul li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .card-service ul li::before {
+            content: "•";
+            color: var(--accent-orange);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .price-container {
+            margin-top: auto;
+        }
+
+        .price-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-beige);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .price-toggle-btn:hover {
+            background-color: var(--border-gray);
+        }
+
+        .price-toggle-btn::after {
+            content: "+";
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            transition: transform 0.2s ease;
+        }
+
+        .price-toggle-btn.active::after {
+            content: "−";
+        }
+
+        .price-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background-color: var(--surface-white);
+        }
+
+        .price-content-inner {
+            padding: 1rem 0.5rem 0.5rem 0.5rem;
+            border-top: 1px dashed var(--border-gray);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f1efe9;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-label {
+            color: var(--text-dark);
+            font-weight: 500;
+            padding-right: 10px;
+        }
+
+        .price-value {
+            color: var(--accent-orange);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .disclaimer-box {
+            background-color: var(--surface-white);
+            border-left: 3px solid var(--accent-orange);
+            border-top: 1px solid var(--border-gray);
+            border-right: 1px solid var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 4rem;
+        }
+
+        .disclaimer-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            background-color: var(--surface-white);
+            border-top: 1px solid var(--border-gray);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+margin-bottom: 1rem;
+}
+.footer-brand {
+font-family: 'Space Grotesk', sans-serif;
+font-weight: 700;
+color: var(--text-dark);
+margin-bottom: 0.5rem;
+}
+@media (max-width: 576px) {
+h1 { font-size: 2rem; }
+.hero { padding: 3rem 1rem 1.5rem 1rem; }
+.main-content { padding: 1rem 1rem 3rem 1rem; }
+.card-service { padding: 1.5rem; }
+}
