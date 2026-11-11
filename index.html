@@ -1,366 +1,762 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TecnoAxiii | Servicios informáticos y tecnológicos en Carmona</title>
-    <meta name="description" content="Servicios tecnológicos e informáticos independientes en Carmona (Sevilla) y alrededores. Reparación de ordenadores, montaje, consolas, optimización de software y proyectos web sin intermediarios.">
-    <meta name="keywords" content="informatica carmona, reparar ordenador carmona, servicio tecnico carmona, reparar portatil sevilla, montaje pc carmona, tecnoaxiii">
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-beige: #f7f5f0;
-            --surface-white: #ffffff;
-            --text-dark: #1e2022;
-            --text-muted: #5a5e63;
-            --accent-orange: #d96b43;
-            --accent-orange-hover: #c25934;
-            --border-gray: #e4e2dd;
-            --radius: 12px;
-            --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbf9f5">
+  <meta name="description" content="TecnoAxiii: servicios informáticos y tecnológicos independientes en Carmona (Sevilla) y alrededores. Reparaciones, mantenimiento, montaje de ordenadores y soluciones a medida.">
+  <title>TecnoAxiii | Servicios Tecnológicos Independientes en Carmona</title>
+  <style>
+    :root {
+      --bg: #fbf9f5;
+      --card-bg: #ffffff;
+      --text-main: #2b2d31;
+      --text-muted: #5e626e;
+      --border-color: #e2dec9;
+      --terracotta: #c85a32;
+      --terracotta-hover: #b04d28;
+      --terracotta-light: #f7ebe6;
+      --radius: 12px;
+      --max: 1080px;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
-        body {
-            background-color: var(--bg-beige);
-            color: var(--text-dark);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+    .wrap {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
 
-        header {
-            background-color: var(--surface-white);
-            border-bottom: 1px solid var(--border-gray);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* Header & Navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(251, 249, 245, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+    }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 1.5rem;
-        }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
 
-        .logo span {
-            color: var(--accent-orange);
-        }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--terracotta);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
 
-        .tag-location {
-            font-size: 0.85rem;
-            background-color: var(--bg-beige);
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            font-weight: 500;
-            border: 1px solid var(--border-gray);
-            color: var(--text-muted);
-        }
+    .brand span span {
+      color: var(--terracotta);
+    }
 
-        .hero {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem 3rem 1.5rem;
-            text-align: center;
-        }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .hero-badge {
-            display: inline-block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
+    .btn-nav-primary {
+      background: var(--terracotta);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--terracotta);
+      transition: background-color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.75rem;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.25rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .btn-nav-primary:hover {
+      background: var(--terracotta-hover);
+    }
 
-        .hero-desc {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 620px;
-            margin: 0 auto 2.5rem auto;
-        }
+    /* Hero Section */
+    .hero {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      border: 1px solid rgba(200, 90, 50, 0.2);
+    }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.85rem 1.75rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: var(--radius);
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            width: 100%;
-        }
+    .location-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--terracotta);
+    }
 
-        @media (min-width: 576px) {
-            .btn { width: auto; }
-        }
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      color: var(--text-main);
+      margin: 0 0 18px 0;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
 
-        .btn-primary {
-            background-color: var(--accent-orange);
-            color: var(--surface-white);
-        }
+    h1 span {
+      color: var(--terracotta);
+    }
 
-        .btn-primary:hover {
-            background-color: var(--accent-orange-hover);
-        }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 0 28px 0;
+      line-height: 1.6;
+    }
 
-        .btn-secondary {
-            background-color: var(--surface-white);
-            color: var(--text-dark);
-            border: 1px solid var(--border-gray);
-        }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
 
-        .btn-secondary:hover {
-            background-color: var(--bg-beige);
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
 
-        .main-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 5rem 1.5rem;
-        }
+    .btn-primary {
+      background: var(--terracotta);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--terracotta-hover);
+    }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid var(--text-dark);
-            padding-bottom: 0.5rem;
-        }
+    .btn-outline {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+    .btn-outline:hover {
+      border-color: var(--text-main);
+    }
 
-        .grid-services {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
+    /* Section Header */
+    .section-head {
+      padding: 48px 0 24px;
+    }
 
-        @media (min-width: 768px) {
-            .grid-services {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .kicker {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--terracotta);
+      margin-bottom: 6px;
+    }
 
-        @media (min-width: 992px) {
-            .grid-services {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+    h2 {
+      font-size: clamp(1.6rem, 4vw, 2.3rem);
+      margin: 0 0 10px 0;
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
 
-        .card-service {
-            background-color: var(--surface-white);
-            border: 1px solid var(--border-gray);
-            border-radius: var(--radius);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            transition: var(--transition);
-        }
+    .section-intro {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 620px;
+      margin: 0;
+    }
 
-        .card-service:hover {
-            border-color: var(--text-dark);
-            transform: translateY(-2px);
-        }
+    /* Editorial Grid / Service Cards */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
 
-        .card-icon {
-            font-size: 1.75rem;
-            margin-bottom: 1.25rem;
-            color: var(--accent-orange);
-            background-color: var(--bg-beige);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .card-service h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
+    .service-card:hover {
+      border-color: var(--terracotta);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
 
-        .card-service ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
+    .card-top {
+      margin-bottom: 16px;
+    }
 
-        .card-service ul li {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            padding-left: 1.25rem;
-            position: relative;
-        }
+    .card-num {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
 
-        .card-service ul li::before {
-            content: "•";
-            color: var(--accent-orange);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
+    .service-card h3 {
+      font-size: 1.2rem;
+      margin: 0 0 10px 0;
+      color: var(--text-main);
+      font-weight: 700;
+    }
 
-        .price-container {
-            margin-top: auto;
-        }
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0 0 14px 0;
+      line-height: 1.5;
+    }
 
-        .price-toggle-btn {
-            background: none;
-            border: none;
-            color: var(--text-dark);
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background-color: var(--bg-beige);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+    .service-list {
+      margin: 0 0 20px 0;
+      padding-left: 18px;
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
 
-        .price-toggle-btn:hover {
-            background-color: var(--border-gray);
-        }
+    .service-list li {
+      margin-bottom: 6px;
+    }
 
-        .price-toggle-btn::after {
-            content: "+";
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            transition: transform 0.2s ease;
-        }
+    /* Toggle Price Accordion */
+    .price-accordion {
+      margin-top: auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 14px;
+    }
 
-        .price-toggle-btn.active::after {
-            content: "−";
-        }
+    .price-btn {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
 
-        .price-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            background-color: var(--surface-white);
-        }
+    .price-btn:hover {
+      background: var(--terracotta-light);
+      border-color: rgba(200, 90, 50, 0.3);
+      color: var(--terracotta);
+    }
 
-        .price-content-inner {
-            padding: 1rem 0.5rem 0.5rem 0.5rem;
-            border-top: 1px dashed var(--border-gray);
-        }
+    .price-btn .icon-toggle {
+      font-weight: 700;
+      font-size: 1rem;
+    }
 
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #f1efe9;
-        }
+    .price-details {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
 
-        .price-item:last-child {
-            border-bottom: none;
-        }
+    .price-details.open {
+      display: block;
+    }
 
-        .price-label {
-            color: var(--text-dark);
-            font-weight: 500;
-            padding-right: 10px;
-        }
+    .price-details ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 0.84rem;
+      color: var(--text-main);
+    }
 
-        .price-value {
-            color: var(--accent-orange);
-            font-weight: 700;
-            white-space: nowrap;
-        }
+    .price-details li {
+      margin-bottom: 6px;
+    }
 
-        .disclaimer-box {
-            background-color: var(--surface-white);
-            border-left: 3px solid var(--accent-orange);
-            border-top: 1px solid var(--border-gray);
-            border-right: 1px solid var(--border-gray);
-            border-bottom: 1px solid var(--border-gray);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            margin-top: 4rem;
-        }
+    .price-details li:last-child {
+      margin-bottom: 0;
+    }
 
-        .disclaimer-box p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
+    .price-details strong {
+      color: var(--terracotta);
+    }
 
-        footer {
-            background-color: var(--surface-white);
-            border-top: 1px solid var(--border-gray);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
+    /* Callout & Area Section */
+    .area-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--terracotta);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        footer p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-margin-bottom: 1rem;
-}
-.footer-brand {
-font-family: 'Space Grotesk', sans-serif;
-font-weight: 700;
-color: var(--text-dark);
-margin-bottom: 0.5rem;
-}
-@media (max-width: 576px) {
-h1 { font-size: 2rem; }
-.hero { padding: 3rem 1rem 1.5rem 1rem; }
-.main-content { padding: 1rem 1rem 3rem 1rem; }
-.card-service { padding: 1.5rem; }
-}
+    .area-box h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .area-box p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact Box */
+    .contact-card {
+      background: var(--terracotta-light);
+      border: 1px solid rgba(200, 90, 50, 0.25);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-card h2 {
+      font-size: 1.75rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 22px auto;
+      font-size: 0.98rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 32px 0 44px;
+      background: #f4f0e8;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .disclaimer {
+      line-height: 1.5;
+      color: #7a7e8b;
+      font-size: 0.8rem;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 28px, var(--max)); }
+      .nav { min-height: 64px; }
+      .brand { font-size: 1.05rem; }
+      .hero { padding: 36px 0 28px; }
+      .hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+      .btn { width: 100%; min-height: 48px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 20px; }
+      .contact-card { padding: 28px 18px; }
+      .area-box { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="TecnoAxiii - Inicio">
+        <span class="brand-mark">TA</span>
+        <span>Tecno<span>Axiii</span></span>
+      </a>
+      <div class="nav-actions">
+        <a class="btn-nav-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20Servicios%20Inform%C3%A1ticos%20-%20Carmona" target="_blank" rel="noopener noreferrer">
+          Contactar ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section with Local SEO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="location-badge">
+          <span class="dot"></span> Carmona (Sevilla) y alrededores
+        </div>
+        <h1>Servicios tecnológicos independientes en <span>Carmona</span>.</h1>
+        <p class="lead">Soluciones prácticas y directas en informática, reparación de ordenadores, optimización de software, consolas y proyectos digitales a medida. Atención cercana sin tecnicismos innecesarios.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20-%20Carmona" target="_blank" rel="noopener noreferrer">
+            Enviar correo directo
+          </a>
+          <a class="btn btn-outline" href="#servicios">
+            Ver catálogo de servicios ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Catalog -->
+    <section class="wrap" id="servicios">
+      <div class="section-head">
+        <div class="kicker">Catálogo de Servicios</div>
+        <h2>Soluciones informáticas a tu medida</h2>
+        <p class="section-intro">Haz clic en cada tarjeta para consultar las especialidades o despliega los precios para ver la tarifa orientativa de cada servicio.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- 01. Reparación -->
+        <article class="service-card" id="reparacion">
+          <div class="card-top">
+            <div class="card-num">01 / SERVICIO</div>
+            <h3>Reparación y Mantenimiento</h3>
+            <p>Mantenimiento físico y diagnóstico preciso para extender la vida útil de tus equipos informáticos y móviles.</p>
+            <ul class="service-list">
+              <li>Limpieza interna y cambio de pasta térmica.</li><li>Diagnóstico de fallos de hardware.</li><li>Sustitución de piezas defectuosas.</li><li>Organización y limpieza de almacenamiento.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Mantenimiento básico (limpieza y desmontaje): <strong>10 €</strong></li>
+                <li>Mantenimiento completo + drivers: <strong>15 €</strong></li>
+                <li>Limpieza profunda + desinfección de malware: <strong>20 €</strong></li>
+                <li>Sustitución de hasta 3 componentes: <strong>20 €</strong></li>
+                <li>Cambio de más de 3 piezas interiores: <strong>40 €</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02. Montaje -->
+        <article class="service-card" id="montaje">
+          <div class="card-top">
+            <div class="card-num">02 / SERVICIO</div>
+            <h3>Montaje de Ordenadores</h3>
+            <p>Montaje a medida de equipos de sobremesa ajustados exactamente a tu presupuesto y necesidades.</p>
+            <ul class="service-list">
+              <li>Asesoramiento y selección de componentes.</li><li>Montaje profesional desde cero y ordenado de cables.</li><li>Instalación y actualización de RAM, SSD o gráfica.</li><li>Pruebas de estabilidad y puesta a punto.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Montaje completo de torre y periféricos: <strong>50 €</strong></li>
+                <li>Intervención / ampliación en portátil: <strong>70 €</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03. Consolas -->
+        <article class="service-card" id="consolas">
+          <div class="card-top">
+            <div class="card-num">03 / SERVICIO</div>
+            <h3>Consolas y Software</h3>
+            <p>Mantenimiento, optimización y personalización de consolas de videojuegos portátiles y sobremesa.</p>
+            <ul class="service-list">
+              <li>Nintendo DS, 2DS, 3DS y Switch.</li><li>PlayStation (PS2, PS3, PS4) y Xbox.</li><li>Instalación de firmware personalizado (ej. Luma3DS).</li><li>Configuración de emuladores y herramientas.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Modificación de software (ej. Luma3DS): <strong>30 €</strong></li>
+                <li>Configuración de apps y emuladores: <strong>Según volumen</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04. Programación -->
+        <article class="service-card" id="programacion">
+          <div class="card-top">
+            <div class="card-num">04 / SERVICIO</div>
+            <h3>Programación y Web</h3>
+            <p>Desarrollo de páginas web, herramientas locales, automatizaciones y bots a medida.</p>
+            <ul class="service-list">
+              <li>Páginas web modernas y optimizadas.</li><li>Scripts de automatización y bots.</li><li>Desarrollo de utilidades personalizadas.</li><li>Integración de servicios y herramientas digitales.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Proyectos web y aplicaciones: <strong>Presupuesto según alcance</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05. Sistemas -->
+        <article class="service-card" id="sistemas">
+          <div class="card-top">
+            <div class="card-num">05 / SERVICIO</div>
+            <h3>Sistemas Operativos</h3>
+            <p>Instalación limpia, optimización y solución de problemas en Windows, Linux y macOS.</p>
+            <ul class="service-list">
+              <li>Instalación de Windows y distribuciones Linux (Arch, Mint).</li><li>Optimización especial de rendimiento para juegos.</li><li>Configuración e instalación de drivers.</li><li>Eliminación de virus, spyware y programas basura.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Instalación sistema base: <strong>10 €</strong></li>
+                <li>Instalación completa + optimización: <strong>18 €</strong></li>
+                <li>Pack Premium (Drivers + Apps + Virus out): <strong>30 €</strong></li>
+                <li>Optimización dedicada a Videojuegos: <strong>20 € - 40 €</strong></li>
+                <li>Actualización/Instalación de drivers: <strong>15 €</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06. NAS / Servidores -->
+        <article class="service-card" id="servidores">
+          <div class="card-top">
+            <div class="card-num">06 / SERVICIO</div>
+            <h3>NAS y Electrónica</h3>
+            <p>Montaje de almacenamiento en red doméstico y prototipado con placas de desarrollo.</p>
+            <ul class="service-list">
+              <li>Configuración de servidores NAS y backups.</li><li>Proyectos con Raspberry Pi y Orange Pi.</li><li>Prototipado con Arduino, ESP32 y micro:bit.</li><li>Configuración de redes locales pequeñas.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Montaje y configuración de NAS / Raspberry: <strong>Presupuesto según proyecto</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 07. Venta -->
+        <article class="service-card" id="venta">
+          <div class="card-top">
+            <div class="card-num">07 / SERVICIO</div>
+            <h3>Venta de Material</h3>
+            <p>Búsqueda y suministro de componentes informáticos y periféricos según disponibilidad.</p>
+            <ul class="service-list">
+              <li>Discos SSD, HDD y memorias RAM.</li><li>Pendrives, tarjetas SD y microSD.</li><li>Cables, adaptadores y accesorios.</li><li>Componentes específicos de recambio.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Componentes y periféricos: <strong>Precio según producto</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 08. Asesoramiento -->
+        <article class="service-card" id="asesoramiento">
+          <div class="card-top">
+            <div class="card-num">08 / SERVICIO</div>
+            <h3>Asesoramiento Tecnológico</h3>
+            <p>Orientación clara para comprar equipos o resolver dudas sin pagar de más.</p>
+            <ul class="service-list">
+              <li>Elección de portátiles, móviles y periféricos.</li><li>Comparativa de componentes y marcas.</li><li>Configuración de apps y cuentas de usuario.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Asesoramiento de compras: <strong>10 €</strong></li>
+                <li>Configuración de dispositivo/app: <strong>10 € / unidad</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 09. Proyectos -->
+        <article class="service-card" id="proyectos">
+          <div class="card-top">
+            <div class="card-num">09 / SERVICIO</div>
+            <h3>Organización de Proyectos</h3>
+            <p>Estructuración de ideas tecnológicas y división modular para su desarrollo efectivo.</p>
+            <ul class="service-list">
+              <li>Planificación por etapas y objetivos.</li><li>Uso de herramientas de IA para flujos de trabajo.</li><li>Organización de requisitos técnicos.</li>
+            </ul>
+          </div>
+          <div class="price-accordion">
+            <button class="price-btn" onclick="togglePrice(this)" aria-expanded="false">
+              <span>💶 Ver tarifas del servicio</span>
+              <span class="icon-toggle">＋</span>
+            </button>
+            <div class="price-details">
+              <ul>
+                <li>Organización de proyectos: <strong>Presupuesto según complejidad</strong></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Area Description / Local SEO Section -->
+      <div class="area-box">
+        <h3>📍 Cobertura Local y Área de Servicio</h3>
+        <p><strong>Servicios tecnológicos independientes en Carmona (Sevilla) y alrededores.</strong> Ofrezco asistencia directa para particulares y pequeños proyectos en Carmona, El Viso del Alcor, Mairena del Alcor y zonas cercanas de la provincia de Sevilla.</p>
+      </div>
+
+      <!-- Contact Banner -->
+      <div class="contact-card">
+        <h2>¿Tienes alguna duda o necesitas un presupuesto?</h2>
+        <p>Escríbeme un correo directo explicando qué necesitas y te responderé con la mejor solución disponible.</p>
+        <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20Servicios%20-%20Carmona" target="_blank" rel="noopener noreferrer">
+          Contactar por Gmail ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-flex">
+        <div class="footer-brand">TecnoAxiii · Carmona (Sevilla)</div>
+        <div>Servicios Informáticos Independientes</div>
+      </div>
+      <div class="disclaimer">
+        Proyecto independiente basado en aprendizaje autodidacta y experiencia práctica. Cada trabajo se evalúa individualmente y se realiza según los conocimientos, herramientas y viabilidad técnica disponibles.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function togglePrice(button) {
+      const details = button.nextElementSibling;
+      const isOpen = details.classList.contains('open');
+      const icon = button.querySelector('.icon-toggle');
+
+      if (isOpen) {
+        details.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+        icon.textContent = '＋';
+      } else {
+        details.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+        icon.textContent = '−';
+      }
+    }
+  </script>
+</body>
+</html>
