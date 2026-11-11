@@ -85,12 +85,6 @@
       color: var(--terracotta);
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
     .btn-nav-primary {
       background: var(--terracotta);
       color: #ffffff;
@@ -223,7 +217,7 @@
       margin: 0;
     }
 
-    /* Editorial Grid / Service Cards */
+    /* Services Grid */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -245,10 +239,6 @@
     .service-card:hover {
       border-color: var(--terracotta);
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-    }
-
-    .card-top {
-      margin-bottom: 16px;
     }
 
     .card-num {
@@ -312,11 +302,6 @@
       color: var(--terracotta);
     }
 
-    .price-btn .icon-toggle {
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
     .price-details {
       display: none;
       margin-top: 10px;
@@ -341,15 +326,11 @@
       margin-bottom: 6px;
     }
 
-    .price-details li:last-child {
-      margin-bottom: 0;
-    }
-
     .price-details strong {
       color: var(--terracotta);
     }
 
-    /* Callout & Area Section */
+    /* Area Section */
     .area-box {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -357,13 +338,10 @@
       border-radius: var(--radius);
       padding: 28px;
       margin-bottom: 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
     }
 
     .area-box h3 {
-      margin: 0;
+      margin: 0 0 8px 0;
       font-size: 1.25rem;
       color: var(--text-main);
     }
@@ -374,7 +352,7 @@
       font-size: 0.95rem;
     }
 
-    /* Contact Box */
+    /* Contact Card */
     .contact-card {
       background: var(--terracotta-light);
       border: 1px solid rgba(200, 90, 50, 0.25);
@@ -429,11 +407,10 @@
       margin-top: 16px;
     }
 
-    /* Mobile Adaptations */
+    /* Responsive */
     @media (max-width: 640px) {
       .wrap { width: min(100% - 28px, var(--max)); }
       .nav { min-height: 64px; }
-      .brand { font-size: 1.05rem; }
       .hero { padding: 36px 0 28px; }
       .hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
       .btn { width: 100%; min-height: 48px; }
@@ -462,14 +439,14 @@
   </header>
 
   <main>
-    <!-- Hero Section with Local SEO -->
+    <!-- Hero Section -->
     <section class="hero">
       <div class="wrap">
         <div class="location-badge">
           <span class="dot"></span> Carmona (Sevilla) y alrededores
         </div>
         <h1>Servicios tecnológicos independientes en <span>Carmona</span>.</h1>
-        <p class="lead">Soluciones prácticas y directas en informática, reparación de ordenadores, optimización de software, consolas y proyectos digitales a medida. Atención cercana sin tecnicismos innecesarios.</p>
+        <p class="lead">Soluciones prácticas y directas en informática, reparación de ordenadores, optimización de software, consolas y proyectos digitales a medida.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20-%20Carmona" target="_blank" rel="noopener noreferrer">
             Enviar correo directo
@@ -486,19 +463,22 @@
       <div class="section-head">
         <div class="kicker">Catálogo de Servicios</div>
         <h2>Soluciones informáticas a tu medida</h2>
-        <p class="section-intro">Haz clic en cada tarjeta para consultar las especialidades o despliega los precios para ver la tarifa orientativa de cada servicio.</p>
+        <p class="section-intro">Consulta los servicios disponibles y despliega las tarifas individuales de cada área.</p>
       </div>
 
       <div class="services-grid">
 
         <!-- 01. Reparación -->
         <article class="service-card" id="reparacion">
-          <div class="card-top">
+          <div>
             <div class="card-num">01 / SERVICIO</div>
             <h3>Reparación y Mantenimiento</h3>
-            <p>Mantenimiento físico y diagnóstico preciso para extender la vida útil de tus equipos informáticos y móviles.</p>
+            <p>Mantenimiento físico y diagnóstico para extender la vida útil de tus equipos informáticos.</p>
             <ul class="service-list">
-              <li>Limpieza interna y cambio de pasta térmica.</li><li>Diagnóstico de fallos de hardware.</li><li>Sustitución de piezas defectuosas.</li><li>Organización y limpieza de almacenamiento.</li>
+              <li>Limpieza interna y cambio de pasta térmica.</li>
+              <li>Diagnóstico de fallos de hardware.</li>
+              <li>Sustitución de piezas defectuosas.</li>
+              <li>Organización y limpieza de almacenamiento.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -520,12 +500,15 @@
 
         <!-- 02. Montaje -->
         <article class="service-card" id="montaje">
-          <div class="card-top">
+          <div>
             <div class="card-num">02 / SERVICIO</div>
             <h3>Montaje de Ordenadores</h3>
             <p>Montaje a medida de equipos de sobremesa ajustados exactamente a tu presupuesto y necesidades.</p>
             <ul class="service-list">
-              <li>Asesoramiento y selección de componentes.</li><li>Montaje profesional desde cero y ordenado de cables.</li><li>Instalación y actualización de RAM, SSD o gráfica.</li><li>Pruebas de estabilidad y puesta a punto.</li>
+              <li>Asesoramiento y selección de componentes.</li>
+              <li>Montaje profesional desde cero y ordenado de cables.</li>
+              <li>Instalación y actualización de RAM, SSD o gráfica.</li>
+              <li>Pruebas de estabilidad y puesta a punto.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -544,12 +527,15 @@
 
         <!-- 03. Consolas -->
         <article class="service-card" id="consolas">
-          <div class="card-top">
+          <div>
             <div class="card-num">03 / SERVICIO</div>
             <h3>Consolas y Software</h3>
             <p>Mantenimiento, optimización y personalización de consolas de videojuegos portátiles y sobremesa.</p>
             <ul class="service-list">
-              <li>Nintendo DS, 2DS, 3DS y Switch.</li><li>PlayStation (PS2, PS3, PS4) y Xbox.</li><li>Instalación de firmware personalizado (ej. Luma3DS).</li><li>Configuración de emuladores y herramientas.</li>
+              <li>Nintendo DS, 2DS, 3DS y Switch.</li>
+              <li>PlayStation (PS2, PS3, PS4) y Xbox.</li>
+              <li>Instalación de firmware personalizado (ej. Luma3DS).</li>
+              <li>Configuración de emuladores y herramientas.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -568,12 +554,15 @@
 
         <!-- 04. Programación -->
         <article class="service-card" id="programacion">
-          <div class="card-top">
+          <div>
             <div class="card-num">04 / SERVICIO</div>
             <h3>Programación y Web</h3>
             <p>Desarrollo de páginas web, herramientas locales, automatizaciones y bots a medida.</p>
             <ul class="service-list">
-              <li>Páginas web modernas y optimizadas.</li><li>Scripts de automatización y bots.</li><li>Desarrollo de utilidades personalizadas.</li><li>Integración de servicios y herramientas digitales.</li>
+              <li>Páginas web modernas y optimizadas.</li>
+              <li>Scripts de automatización y bots.</li>
+              <li>Desarrollo de utilidades personalizadas.</li>
+              <li>Integración de servicios digitales.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -591,12 +580,15 @@
 
         <!-- 05. Sistemas -->
         <article class="service-card" id="sistemas">
-          <div class="card-top">
+          <div>
             <div class="card-num">05 / SERVICIO</div>
             <h3>Sistemas Operativos</h3>
             <p>Instalación limpia, optimización y solución de problemas en Windows, Linux y macOS.</p>
             <ul class="service-list">
-              <li>Instalación de Windows y distribuciones Linux (Arch, Mint).</li><li>Optimización especial de rendimiento para juegos.</li><li>Configuración e instalación de drivers.</li><li>Eliminación de virus, spyware y programas basura.</li>
+              <li>Instalación de Windows y distribuciones Linux (Arch, Mint).</li>
+              <li>Optimización especial de rendimiento para juegos.</li>
+              <li>Configuración e instalación de drivers.</li>
+              <li>Eliminación de virus, spyware y malware.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -616,14 +608,17 @@
           </div>
         </article>
 
-        <!-- 06. NAS / Servidores -->
+        <!-- 06. NAS y Servidores -->
         <article class="service-card" id="servidores">
-          <div class="card-top">
+          <div>
             <div class="card-num">06 / SERVICIO</div>
             <h3>NAS y Electrónica</h3>
             <p>Montaje de almacenamiento en red doméstico y prototipado con placas de desarrollo.</p>
             <ul class="service-list">
-              <li>Configuración de servidores NAS y backups.</li><li>Proyectos con Raspberry Pi y Orange Pi.</li><li>Prototipado con Arduino, ESP32 y micro:bit.</li><li>Configuración de redes locales pequeñas.</li>
+              <li>Configuración de servidores NAS y copias de seguridad.</li>
+              <li>Proyectos con Raspberry Pi y Orange Pi.</li>
+              <li>Prototipado con Arduino, ESP32 y micro:bit.</li>
+              <li>Configuración de redes locales pequeñas.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -641,12 +636,15 @@
 
         <!-- 07. Venta -->
         <article class="service-card" id="venta">
-          <div class="card-top">
+          <div>
             <div class="card-num">07 / SERVICIO</div>
             <h3>Venta de Material</h3>
             <p>Búsqueda y suministro de componentes informáticos y periféricos según disponibilidad.</p>
             <ul class="service-list">
-              <li>Discos SSD, HDD y memorias RAM.</li><li>Pendrives, tarjetas SD y microSD.</li><li>Cables, adaptadores y accesorios.</li><li>Componentes específicos de recambio.</li>
+              <li>Discos SSD, HDD y memorias RAM.</li>
+              <li>Pendrives, tarjetas SD y microSD.</li>
+              <li>Cables, adaptadores y accesorios.</li>
+              <li>Componentes específicos de recambio.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -664,12 +662,14 @@
 
         <!-- 08. Asesoramiento -->
         <article class="service-card" id="asesoramiento">
-          <div class="card-top">
+          <div>
             <div class="card-num">08 / SERVICIO</div>
             <h3>Asesoramiento Tecnológico</h3>
             <p>Orientación clara para comprar equipos o resolver dudas sin pagar de más.</p>
             <ul class="service-list">
-              <li>Elección de portátiles, móviles y periféricos.</li><li>Comparativa de componentes y marcas.</li><li>Configuración de apps y cuentas de usuario.</li>
+              <li>Elección de portátiles, móviles y periféricos.</li>
+              <li>Comparativa de componentes y marcas.</li>
+              <li>Configuración de apps y cuentas de usuario.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -688,12 +688,14 @@
 
         <!-- 09. Proyectos -->
         <article class="service-card" id="proyectos">
-          <div class="card-top">
+          <div>
             <div class="card-num">09 / SERVICIO</div>
             <h3>Organización de Proyectos</h3>
             <p>Estructuración de ideas tecnológicas y división modular para su desarrollo efectivo.</p>
             <ul class="service-list">
-              <li>Planificación por etapas y objetivos.</li><li>Uso de herramientas de IA para flujos de trabajo.</li><li>Organización de requisitos técnicos.</li>
+              <li>Planificación por etapas y objetivos.</li>
+              <li>Uso de herramientas de IA para flujos de trabajo.</li>
+              <li>Organización de requisitos técnicos.</li>
             </ul>
           </div>
           <div class="price-accordion">
@@ -711,16 +713,16 @@
 
       </div>
 
-      <!-- Area Description / Local SEO Section -->
+      <!-- Area Description -->
       <div class="area-box">
         <h3>📍 Cobertura Local y Área de Servicio</h3>
-        <p><strong>Servicios tecnológicos independientes en Carmona (Sevilla) y alrededores.</strong> Ofrezco asistencia directa para particulares y pequeños proyectos en Carmona, El Viso del Alcor, Mairena del Alcor y zonas cercanas de la provincia de Sevilla.</p>
+        <p><strong>Servicios tecnológicos independientes en Carmona (Sevilla) y alrededores.</strong> Asistencia directa para particulares y pequeños proyectos en Carmona, El Viso del Alcor, Mairena del Alcor y zonas cercanas de la provincia de Sevilla.</p>
       </div>
 
       <!-- Contact Banner -->
       <div class="contact-card">
-        <h2>¿Tienes alguna duda o necesitas un presupuesto?</h2>
-        <p>Escríbeme un correo directo explicando qué necesitas y te responderé con la mejor solución disponible.</p>
+        <h2>¿Tienes alguna duda o necesitas presupuesto?</h2>
+        <p>Escríbeme un correo explicando qué necesitas y te responderé lo antes posible.</p>
         <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=davidapp011%40gmail.com&su=Consulta%20Servicios%20-%20Carmona" target="_blank" rel="noopener noreferrer">
           Contactar por Gmail ↗
         </a>
@@ -736,7 +738,7 @@
         <div>Servicios Informáticos Independientes</div>
       </div>
       <div class="disclaimer">
-        Proyecto independiente basado en aprendizaje autodidacta y experiencia práctica. Cada trabajo se evalúa individualmente y se realiza según los conocimientos, herramientas y viabilidad técnica disponibles.
+        Proyecto independiente basado en aprendizaje autodidacta y experiencia práctica. Cada trabajo se evalúa individualmente según los conocimientos y viabilidad técnica disponibles.
       </div>
     </div>
   </footer>
